@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using CPVault.Models;
 
 namespace CPVault.Data;
 
@@ -8,4 +9,8 @@ public class ApplicationDbContext : DbContext
         : base(options)
     {
     }
+
+    public DbSet<User> Users => Set<User>();
+    public DbSet<Deck> Decks => Set<Deck>();
+    public DbSet<Note> Notes => Set<Note>();
 }
