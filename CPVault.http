@@ -1,0 +1,6 @@
+@CPVault_HostAddress = http://localhost:5263
+
+GET {{CPVault_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
