@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CPVault.Controllers;
@@ -6,9 +7,10 @@ namespace CPVault.Controllers;
 [Route("api/health")]
 public class HealthController : ControllerBase
 {
+    [Authorize]
     [HttpGet]
     public IActionResult Get()
     {
-        return Ok("CPVault API is running");
+        return Ok("Authorized access works");
     }
 }
