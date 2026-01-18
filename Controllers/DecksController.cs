@@ -36,7 +36,7 @@ public class DecksController : ControllerBase
         _db.Decks.Add(deck);
         await _db.SaveChangesAsync();
 
-        return Ok(MapToDto(deck, userId));
+        return CreatedAtAction(nameof(GetById), new { id = deck.Id }, MapToDto(deck, userId));
     }
 
     [HttpGet("{id:int}")]
