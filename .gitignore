@@ -2,3 +2,7 @@ bin/
 obj/
 .vs/
 .env
+*.user
+.idea/
+appsettings.Development.json
+course.md
