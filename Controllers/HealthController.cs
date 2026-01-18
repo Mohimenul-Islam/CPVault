@@ -7,10 +7,16 @@ namespace CPVault.Controllers;
 [Route("api/health")]
 public class HealthController : ControllerBase
 {
-    [Authorize]
     [HttpGet]
     public IActionResult Get()
     {
-        return Ok("Authorized access works");
+        return Ok(new { status = "healthy" });
+    }
+
+    [Authorize]
+    [HttpGet("auth")]
+    public IActionResult GetAuth()
+    {
+        return Ok(new { status = "authorized" });
     }
 }

@@ -1,7 +1,28 @@
+# Standard .NET gitignore
 bin/
 obj/
 .vs/
-.env
+.vscode/
 *.user
-.idea/
+*.userosscache
+*.sln.doccache
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# Environment / Secrets
+.env
 appsettings.Development.json
+
+# IDE
+.idea/
+.DS_Store
+
+# Logs
+Log/
+logs/
+*.log
+
