@@ -9,10 +9,42 @@ services:
       POSTGRES_DB: cpvault_db
       POSTGRES_USER: cpvault_user
       POSTGRES_PASSWORD: cpvault_pass
-    ports:
-      - "5432:5432"
     volumes:
       - cpvault_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cpvault_user -d cpvault_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cpvault-backend
+    restart: always
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=cpvault_db;Username=cpvault_user;Password=cpvault_pass"
+      Jwt__Key: "THIS_IS_A_VERY_LONG_SUPER_SECURE_DEVELOPMENT_SECRET_KEY_123456789"
+      Jwt__Issuer: "CPVault"
+      Jwt__Audience: "CPVaultUsers"
+      Jwt__ExpireMinutes: "60"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "5263:5263"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cpvault-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
 
 volumes:
   cpvault_data:

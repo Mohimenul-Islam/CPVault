@@ -54,7 +54,7 @@ export default function DeckDetails() {
                     <h4>{note.problemName}</h4>
 
                     {note.problemLink && (
-                        <a href={note.problemLink} target="_blank">
+                        <a href={note.problemLink} target="_blank" rel="noopener noreferrer">
                             Problem link
                         </a>
                     )}

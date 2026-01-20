@@ -1,0 +1,8 @@
+bin/
+obj/
+.git/
+.gitignore
+*.md
+frontend/
+docker-compose.yml
+appsettings.Development.json
