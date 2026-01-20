@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./auth/AuthContext";
 import Login from "./pages/Login";
+import DeckList from "./pages/DeckList";
 
 function App() {
   return (
@@ -9,8 +10,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
 
-          {/* Temporary home route */}
-          <Route path="/" element={<div>Home (logged in users will land here)</div>} />
+          <Route path="/" element={<DeckList />} />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>
